@@ -1,5 +1,3 @@
-# BackLog
-
 -> User interface (cum va arata efectiv plug-in-ul cand apare pe ecran: titlul, color scheme-ul, butoanele "post it");
 
 -> Apare plug-in ul ca fereastra tip pop-up cand vrei sa postezi (face, totodata, detectarea retelei pe care se afla user-ul la momentul pop-ului);
