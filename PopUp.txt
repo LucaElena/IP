@@ -1,0 +1,61 @@
+Pop-Up Window in Chrome:
+
+-Vom face un layout orientativ in HTML/CSS + JS;
+-Vom folosi butoane pentru toate actiunile de pe fereastra noastra:
+
+<div class="toolbar">
+    <button id="select-button" class="btn btn-default">Selected Social Media</button>
+    <button type="button" class="btn btn-default">
+
+-Vom folosi https://developer.chrome.com/extensions/browserAction documentatia oficiala
+si vom folosi Manifest pentru a ne incepe script-ul       {
+        "name": "My extension",
+        ...
+        "browser_action": {
+          "default_icon": {                    // optional
+            "16": "images/icon16.png",           // optional
+            "24": "images/icon24.png",           // optional
+            "32": "images/icon32.png"            // optional
+          },
+          "default_title": "Google Mail",      // optional; shown in tooltip
+          "default_popup": "popup.html"        // optional
+        },
+        ...
+      }
+
+(Chrome va scala automat size-ul pop-ului, astfel incat sa fie size-ul potrivit/nepixelat
+pentru fereastra pe care se afla, dar este recomandat sa dam noi din start mai multe icon
+sizes pentru a ne asigura ca nu va fi blurry).
+
+-O componenta importanta: "browser_action from the documentation is described as:
+
+Use browser actions to put icons in the main Google Chrome toolbar, to the right of 
+the address bar. In addition to its icon, a browser action can also have a tooltip, 
+a badge, and a popup". 
+
+-Vom gestiona actiunile de postare pe retea in sine a pozei/atasamentului/textului
+in JavaScript, folosind EventListener
+	document.addEventListener('DOMContentLoaded', function() {
+  	   let form = document.getElementById('form');
+    	      form.addEventListener('submit', function(e){
+		...*ce vrem sa se intample dupa apasarea butonului de POST IT*...
+		}
+
+-In documentatia data de Chrome am gasit sfaturi esentiale pentru a avea un pop-up
+user-friendly si cu un impact vizual sporit:
+	Tips
+	For the best visual impact, follow these guidelines:
+
+	Do use browser actions for features that make sense on most pages.
+	Don't use browser actions for features that make sense for only a few pages. Use page actions instead.
+	Do use big, colorful icons that make the most of the 16x16-dip space. Browser action icons should seem a little bigger and heavier than page action icons.
+	Don't attempt to mimic Google Chrome's monochrome menu icon. That doesn't work well with themes, and anyway, extensions should stand out a little.
+	Do use alpha transparency to add soft edges to your icon. Because many people use themes, your icon should look nice on a variety of background colors.
+	Don't constantly animate your icon. That's just annoying.
+
+-Si de asemenea, avem metodele de care ne vom folosi in JS:
+de exemplu:
+	-chrome.browserAction.setTitle(object details, function callback);
+	-chrome.browserAction.getTitle(object details, function callback);
+	-chrome.browserAction.onClicked.addListener(function callback);
+
